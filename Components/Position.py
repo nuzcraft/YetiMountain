@@ -3,8 +3,7 @@
 
 class Position:
     # defining a position
-    def __init__(self, position_array):
+    # default direction is South (facing down)
+    def __init__(self, position_array, direction='South'):
         self.position_array = position_array
-
-    def count(self):
-        return len(self.position_array)
+        self.direction = direction
