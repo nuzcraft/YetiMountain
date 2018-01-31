@@ -3,8 +3,8 @@
 
 class Entity:
     # class file for an Entity
-    def __init__(self, position=None, character=None, renderable=False):
+    def __init__(self, position=None, glyph=None, renderable=False):
         # initialization for self and components
         self.position = position
-        self.character = character
+        self.glyph = glyph
         self.renderable = renderable

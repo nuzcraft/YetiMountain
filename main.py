@@ -3,20 +3,18 @@ import variables as var
 from Entity import Entity
 from Components.Position import Position
 from Components.Glyph import Glyph
+from Systems import RenderingSystem
 from bearlibterminal import terminal
 
 player_pos = Position(var.player_array)
 player_glyph = Glyph(var.glyph_array)
-player = Entity(position=player_pos, character=player_glyph)
+player = Entity(position=player_pos, glyph=player_glyph, renderable=True)
+
+var.entities.append(player)
 
 terminal.open()
 terminal.printf(0, 0, 'Hello, world!')
-# terminal.printf(player.position.x, player.position.y, '@')
-for i in range(len(player.position.position_array)):
-    x, y = player.position.position_array[i]
-    g = player.character.glyph_array[i]
-    terminal.printf(x, y, g)
-
+RenderingSystem.render_entities()
 terminal.refresh()
 
 while terminal.read() != terminal.TK_CLOSE:
