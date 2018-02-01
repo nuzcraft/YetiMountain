@@ -20,21 +20,21 @@
 2.	Christian Erickson
 ### Major Tasks
 *	Choose a gameplay theme (ideas below)
-*	Gearing up
-*	Spend time exploring, hunting, and gathering to take down a big boss at the end. 
+    *	Gearing up
+        *	Spend time exploring, hunting, and gathering to take down a big boss at the end. 
 *	Choose an artistic theme
-*	Outdoors
-*	Weather, season, biome, etc
-*	Underground
-*	Mines, caves, ruins, crystals, etc
-*	Space
-*	Steampunk
-*	Dystopian
-*	Cityscape
+    *	Outdoors
+    *	Weather, season, biome, etc
+    *	Underground
+    *	Mines, caves, ruins, crystals, etc
+    *	Space
+    *	Steampunk
+    *	Dystopian
+    *	Cityscape
 *	Build the basic game engine
-*	OOP vs ECS
+    *	ECS
 *	Add game specific content to engine
-*	Specific tasks should go here
+    *	Specific tasks should go here
 *	Levels and Characters designed around themes and game engine
 ### Timeline
 *	3 Months – Build out basic game engine
@@ -44,7 +44,7 @@
 *	Total – 12 Months
 ### Task – Breakout
 *	Basic Game Engine
-*	ECS
-*	Start it! Basic entity, component, and system
-*	The easiest system to start with is probably the rendering one.
-*	ETC: 4 hrs
+    *	ECS
+        *	Start it! Basic entity, component, and system
+        *	The easiest system to start with is probably the rendering one.
+        *	ETC: 4 hrs
