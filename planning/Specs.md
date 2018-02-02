@@ -48,3 +48,7 @@
         *	Start it! Basic entity, component, and system
         *	The easiest system to start with is probably the rendering one.
         *	ETC: 4 hrs
+        *   DONE: Actual time: 2.5 hrs
+    * Player Loop
+        * Craft the basic game loop
+        * Render objects, flush to screen, clear objects,  get input, apply changes, repeat 
