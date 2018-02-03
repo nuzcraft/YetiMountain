@@ -26,3 +26,6 @@ Drew	30 min
 ### 2/1/2018
 Drew 10 min
 * Planning - Formatting Changes to Specs.md and Timelog.md docs
+### 2/2/2018
+Drew 90 min
+* Programming - Added basic player loop, with basic controls
