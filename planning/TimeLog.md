@@ -29,3 +29,6 @@ Drew 10 min
 ### 2/2/2018
 Drew 90 min
 * Programming - Added basic player loop, with basic controls
+### 2/4/2018
+Drew 60 min  
+* Planning - Created a couple designs and added them to the planning folder
