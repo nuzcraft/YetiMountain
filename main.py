@@ -32,7 +32,7 @@ terminal.refresh()
 # main game loop, continue until we choose to exit
 while var.player_action != 'exit':
     terminal.clear()
-    var.player_action = get_input()
+    var.player_action, var.mouse_x, var.mouse_y = get_input()
     PlayerInputSystem.handle_input(var.player_action)
     MovementSystem.move_entities()
     terminal.printf(0, 0, 'Hello, world!')

@@ -10,3 +10,7 @@ entities = []
 
 player_action = 'idle'
 game_state = 'playing'
+
+# mouse state
+mouse_x = 0
+mouse_y = 0
