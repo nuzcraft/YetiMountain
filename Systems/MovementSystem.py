@@ -27,4 +27,20 @@ def move_entities():
                         for i in range(len(ent.position.position_array)):
                             x, y = ent.position.position_array[i]
                             ent.position.position_array[i] = x, y + 1
+                    elif ent.movement.direction == 'northeast':
+                        for i in range(len(ent.position.position_array)):
+                            x, y = ent.position.position_array[i]
+                            ent.position.position_array[i] = x + 1, y - 1
+                    elif ent.movement.direction == 'northwest':
+                        for i in range(len(ent.position.position_array)):
+                            x, y = ent.position.position_array[i]
+                            ent.position.position_array[i] = x - 1, y - 1
+                    elif ent.movement.direction == 'southeast':
+                        for i in range(len(ent.position.position_array)):
+                            x, y = ent.position.position_array[i]
+                            ent.position.position_array[i] = x + 1, y + 1
+                    elif ent.movement.direction == 'southwest':
+                        for i in range(len(ent.position.position_array)):
+                            x, y = ent.position.position_array[i]
+                            ent.position.position_array[i] = x - 1, y + 1
 

@@ -29,6 +29,14 @@ def apply_inputs():
                     ent.movement.direction = 'north'
                 elif ent.player_input.action == 'down':
                     ent.movement.direction = 'south'
+                elif ent.player_input.action == 'up-right':
+                    ent.movement.direction = 'northeast'
+                elif ent.player_input.action == 'down-right':
+                    ent.movement.direction = 'southeast'
+                elif ent.player_input.action == 'up-left':
+                    ent.movement.direction = 'northwest'
+                elif ent.player_input.action == 'down-left':
+                    ent.movement.direction = 'southwest'
                 else:
                     ent.player_input.action = 'None'
                     ent.movement.speed = 0
