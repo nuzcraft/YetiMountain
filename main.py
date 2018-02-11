@@ -14,16 +14,15 @@ from bearlibterminal import terminal
 # create the player
 player_pos = Position(var.player_array)
 player_glyph = Glyph(var.glyph_array)
-player2_pos = Position(var.player2_array)
-player2_glyph = Glyph(var.glyph2_array)
 player_movement = Movement()
 player_input = PlayerInput()
 player = Entity(position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
                 , player_input=player_input)
-player2 = Entity(position=player2_pos, glyph=player2_glyph, renderable=True, movement=player_movement
-                , player_input=player_input)
 var.entities.append(player)
-var.entities.append(player2)
+wall_pos = Position(var.wall_array)
+wall_glyph = Glyph(var.wall_glyph)
+wall = Entity(position=wall_pos, glyph=wall_glyph, renderable=True, blocking=True)
+var.entities.append(wall)
 
 # open the terminal, then refresh it to prepare for inputs
 terminal.open()
