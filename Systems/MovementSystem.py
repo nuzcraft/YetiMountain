@@ -3,6 +3,7 @@ import sys
 sys.path.append("..")
 import variables as var
 from Systems import BlockingSystem
+import Helpers.logger as logger
 
 
 def move_entities():
@@ -63,4 +64,6 @@ def move_entities():
                         if BlockingSystem.array_is_blocked(interim_pos_array):
                             return
                     ent.position.position_array = interim_pos_array
+                    # go ahead and log that we moved
+                    logger.log('debug', 'MovementSystem.move_entities | entity moved ' + ent.position.direction)
 

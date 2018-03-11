@@ -10,6 +10,7 @@ from Systems import PlayerInputSystem
 from Systems import MovementSystem
 from Helpers.get_input import get_input
 from bearlibterminal import terminal
+import Helpers.logger as logger
 
 # create the player
 player_pos = Position(var.player_array)
@@ -26,6 +27,7 @@ var.entities.append(wall)
 
 # open the terminal, then refresh it to prepare for inputs
 terminal.open()
+logger.log('info', 'main.py|terminal opened')
 terminal.refresh()
 
 # main game loop, continue until we choose to exit
@@ -40,3 +42,4 @@ while var.player_action != 'exit':
 
 # close the terminal to quit the game
 terminal.close()
+logger.log('info', 'main.py|terminal closed')
