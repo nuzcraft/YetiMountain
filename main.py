@@ -14,15 +14,15 @@ import logging
 
 # create the player
 player_pos = Position(var.player_array)
-player_glyph = Glyph(var.glyph_array)
+player_glyph = Glyph(var.glyph_array, 'white')
 player_movement = Movement()
 player_input = PlayerInput()
-player = Entity(position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
+player = Entity(name='player', position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
                 , player_input=player_input)
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
-wall_glyph = Glyph(var.wall_glyph)
-wall = Entity(position=wall_pos, glyph=wall_glyph, renderable=True, blocking=True)
+wall_glyph = Glyph(var.wall_glyph, 'grey')
+wall = Entity(name='wall', position=wall_pos, glyph=wall_glyph, renderable=True, blocking=True)
 var.entities.append(wall)
 
 # set the name of the file, the logging level, and that we want to truncate each time

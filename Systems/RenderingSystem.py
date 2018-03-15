@@ -15,18 +15,19 @@ def render_entities():
                 for i in range(len(ent.position.position_array)):
                     x, y = ent.position.position_array[i]
                     g = ent.glyph.glyph_array[i]
-                    terminal.printf(x, y, g)
+                    terminal.printf(x, y, g, terminal.color(terminal.color_from_name(ent.glyph.color)))
     except Exception:
         logging.GetLogger().error('error in render_entities', exc_info=True)
 
 
 def render_game_messages():
-    # this function will render game messages, making sure to scroll to the bottom
+    # this function will render game messages, by flipping the list, and rendering from the bottom
     try:
-        y = 1
-        for (line, color) in var.game_messages:
+        y = 40
+        reversed_game_messages = reversed(var.game_messages)
+        for (line, color) in reversed_game_messages:
             terminal.printf(var.right_sidebar_x + 1, y, line, terminal.color(terminal.color_from_name(color)))
-            y += 1
+            y -= 1
     except Exception:
         logging.getLogger().error('error in render_game_messages', exc_info=True)
 

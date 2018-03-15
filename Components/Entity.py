@@ -3,8 +3,9 @@
 
 class Entity:
     # class file for an Entity
-    def __init__(self, position=None, glyph=None, renderable=False, movement=None, player_input=None, blocking=False):
+    def __init__(self, name, position=None, glyph=None, renderable=False, movement=None, player_input=None, blocking=False):
         # initialization for self and components
+        self.name = name
         self.position = position
         self.glyph = glyph
         self.renderable = renderable
