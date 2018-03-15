@@ -1,6 +1,7 @@
 # function to get input from the user
 from bearlibterminal import terminal
 import Helpers.logger as logger
+import logging
 
 
 def get_input():
@@ -11,64 +12,55 @@ def get_input():
     # always return the x and y coordinates of the mouse
     x = terminal.state(terminal.TK_MOUSE_X)
     y = terminal.state(terminal.TK_MOUSE_Y)
+    playerinput = 'none'
     if terminal.has_input():
         key = terminal.read()
         if key == terminal.TK_KP_6\
                 or key == terminal.TK_L:
-            logger.log('debug', 'get_input.py|player input = right')
-            return 'right', x, y
+            playerinput = 'right'
         elif key == terminal.TK_KP_4\
                 or key == terminal.TK_H:
-            logger.log('debug', 'get_input.py|player input = left')
-            return 'left', x, y
+            playerinput = 'left'
         elif key == terminal.TK_KP_8\
                 or key == terminal.TK_K\
                 or key == terminal.TK_UP:
-            logger.log('debug', 'get_input.py|player input = up')
-            return 'up', x, y
+            playerinput = 'up'
         elif key == terminal.TK_KP_2\
                 or key == terminal.TK_J\
                 or key == terminal.TK_DOWN:
-            logger.log('debug', 'get_input.py|player input = down')
-            return 'down', x, y
+            playerinput = 'down'
         elif key == terminal.TK_KP_9\
                 or key == terminal.TK_U:
-            logger.log('debug', 'get_input.py|player input = up-right')
-            return 'up-right', x, y
+            playerinput = 'up-right'
         elif key == terminal.TK_KP_7\
                 or key == terminal.TK_Y:
-            logger.log('debug', 'get_input.py|player input = up-left')
-            return 'up-left', x, y
+            playerinput = 'up-left'
         elif key == terminal.TK_KP_3\
                 or key == terminal.TK_N:
-            logger.log('debug', 'get_input.py|player input = down-right')
-            return 'down-right', x, y
+            playerinput = 'down-right'
         elif key == terminal.TK_KP_1\
                 or key == terminal.TK_B:
-            logger.log('debug', 'get_input.py|player input = down-left')
-            return 'down-left', x, y
+            playerinput = 'down-left'
         elif key == terminal.TK_RIGHT:
             if terminal.check(terminal.TK_SHIFT):
-                logger.log('debug', 'get_input.py|player input = up-right')
-                return 'up-right', x, y
+                playerinput = 'up-right'
             elif terminal.check(terminal.TK_CONTROL):
-                logger.log('debug', 'get_input.py|player input = down-right')
-                return 'down-right', x, y
-            logger.log('debug', 'get_input.py|player input = right')
-            return 'right', x, y
+                playerinput = 'down-right'
+            else:
+                playerinput = 'right'
         elif key == terminal.TK_LEFT:
             if terminal.check(terminal.TK_SHIFT):
-                logger.log('debug', 'get_input.py|player input = up-left')
-                return 'up-left', x, y
+                playerinput = 'up-left'
             elif terminal.check(terminal.TK_CONTROL):
-                logger.log('debug', 'get_input.py|player input = down-left')
-                return 'down-left', x, y
-            logger.log('debug', 'get_input.py|player input = left')
-            return 'left', x, y
+                playerinput = 'down-left'
+            else:
+                playerinput = 'left'
         elif key == terminal.TK_CLOSE\
                 or key == terminal.TK_ESCAPE:
-            logger.log('debug', 'get_input.py|player input = exit')
-            return 'exit', x, y
+            playerinput = 'exit'
 
-    # if nothing, return 'None'
-    return 'None', x, y
+        # if there is an imput, we want to log it
+        logging.getLogger().debug('player input = ' + playerinput)
+
+    # return the input if nothing, return 'None'
+    return playerinput, x, y

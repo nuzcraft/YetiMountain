@@ -1,7 +1,7 @@
 # system for handling blocking entities
 import sys
 sys.path.append("..")
-import variables as var
+from Helpers import variables as var
 
 
 def is_blocked(x, y):
