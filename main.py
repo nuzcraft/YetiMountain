@@ -43,6 +43,7 @@ try:
         MovementSystem.move_entities()
         RenderingSystem.render_entities()
         RenderingSystem.render_game_messages()
+        RenderingSystem.render_gui()
         terminal.refresh()
 
     # close the terminal to quit the game

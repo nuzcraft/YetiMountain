@@ -23,12 +23,25 @@ def render_entities():
 def render_game_messages():
     # this function will render game messages, by flipping the list, and rendering from the bottom
     try:
-        y = 40
+        y = 59
         reversed_game_messages = reversed(var.game_messages)
         for (line, color) in reversed_game_messages:
             terminal.printf(var.right_sidebar_x + 1, y, line,
                             terminal.color(terminal.color_from_name(color)))
             y -= 1
+            if y - var.sidebar_message_log_length <= 0:
+                break
     except Exception:
         logging.getLogger().error('error in render_game_messages', exc_info=True)
+
+
+def render_gui():
+    # this will render the outlines of the gui
+    try:
+        # first, render the vertical pipes around the game log
+        # for the length of the message log, print vertical pipes on the right and left edges
+        for x in range(var.sidebar_message_log_length):
+            terminal.printf(var.right_sidebar_x, 59-x, '[0xE000]')
+    except Exception:
+        logging.getLogger().error('error in render_gui', exc_info=True)
 
