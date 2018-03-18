@@ -23,13 +23,15 @@ def render_entities():
 def render_game_messages():
     # this function will render game messages, by flipping the list, and rendering from the bottom
     try:
-        y = 59
+        y = var.window_height - 2
+        num_messages = 0
         reversed_game_messages = reversed(var.game_messages)
         for (line, color) in reversed_game_messages:
-            terminal.printf(var.right_sidebar_x + 1, y, line,
+            terminal.printf(var.message_log_x + 1, y, line,
                             terminal.color(terminal.color_from_name(color)))
             y -= 1
-            if y - var.sidebar_message_log_length <= 0:
+            num_messages += 1
+            if num_messages >= var.message_log_height:
                 break
     except Exception:
         logging.getLogger().error('error in render_game_messages', exc_info=True)
@@ -38,10 +40,30 @@ def render_game_messages():
 def render_gui():
     # this will render the outlines of the gui
     try:
-        # first, render the vertical pipes around the game log
-        # for the length of the message log, print vertical pipes on the right and left edges
-        for x in range(var.sidebar_message_log_length):
-            terminal.printf(var.right_sidebar_x, 59-x, '[0xE000]')
+        # message log section
+        # TODO: Turn this into its own function render_gui_rectangle
+        # print vertical pipes on the right and left edges
+        for y in range(var.message_log_height - 1):
+            terminal.printf(var.message_log_x, var.message_log_y + y + 1, var.c_vertical_pipe
+                            , terminal.color(terminal.color_from_name('white')))
+            terminal.printf(var.message_log_x + var.message_log_width, var.message_log_y + y + 1, var.c_vertical_pipe
+                            , terminal.color(terminal.color_from_name('white')))
+        # horizontal bars for the top and bottom
+        for x in range(var.message_log_width - 1):
+            terminal.printf(var.message_log_x + x + 1, var.message_log_y, var.c_horizontal_pipe
+                            , terminal.color(terminal.color_from_name('white')))
+            terminal.printf(var.message_log_x + x + 1, var.message_log_y + var.message_log_height, var.c_horizontal_pipe
+                            , terminal.color(terminal.color_from_name('white')))
+        # corners!!
+        terminal.printf(var.message_log_x, var.message_log_y, var.c_down_right_pipe_corner
+                        , terminal.color(terminal.color_from_name('white')))
+        terminal.printf(var.message_log_x + var.message_log_width, var.message_log_y, var.c_down_left_pipe_corner
+                        , terminal.color(terminal.color_from_name('white')))
+        terminal.printf(var.message_log_x, var.message_log_y + var.message_log_height, var.c_up_right_pipe_corner
+                        , terminal.color(terminal.color_from_name('white')))
+        terminal.printf(var.message_log_x + var.message_log_width, var.message_log_y + var.message_log_height, var.c_up_left_pipe_corner
+                        , terminal.color(terminal.color_from_name('white')))
+
     except Exception:
         logging.getLogger().error('error in render_gui', exc_info=True)
 
