@@ -10,6 +10,6 @@ def game_message(message, color='white'):
         # use (message_log_length - 2) to put it inside the borders of the message log
         new_message_lines = textwrap.wrap(message, var.message_log_width - 2)
         for line in new_message_lines:
-            var.game_messages.append((line, color))
+            var.message_log.append((line, color))
     except Exception:
         logging.getLogger().error('error in game_message', exc_info=True)

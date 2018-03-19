@@ -15,6 +15,7 @@ def get_input():
     playerinput = 'none'
     if terminal.has_input():
         key = terminal.read()
+        # handle all the ways to move around
         if key == terminal.TK_KP_6\
                 or key == terminal.TK_L:
             playerinput = 'right'
@@ -55,6 +56,13 @@ def get_input():
                 playerinput = 'down-left'
             else:
                 playerinput = 'left'
+        # handle scrolling the message log
+        elif key == terminal.TK_PAGEUP:
+            playerinput = 'page up'
+        elif key == terminal.TK_PAGEDOWN:
+            playerinput = 'page down'
+        elif key == terminal.TK_MOUSE_SCROLL:
+            playerinput = 'mouse wheel scroll'
         elif key == terminal.TK_CLOSE\
                 or key == terminal.TK_ESCAPE:
             playerinput = 'exit'

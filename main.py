@@ -42,7 +42,6 @@ try:
         PlayerInputSystem.handle_input(var.player_action)
         MovementSystem.move_entities()
         RenderingSystem.render_entities()
-        RenderingSystem.render_game_messages()
         RenderingSystem.render_gui()
         terminal.refresh()
 
