@@ -11,6 +11,7 @@ from Systems import MovementSystem
 from Helpers.get_input import get_input
 from bearlibterminal import terminal
 import logging
+from Components.AIs.MoveRandomDirection import MoveRandomDirection
 
 # create the player
 player_pos = Position(var.player_array)
@@ -22,7 +23,8 @@ player = Entity(name='player', position=player_pos, glyph=player_glyph, renderab
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
 wall_glyph = Glyph(var.wall_glyph, 'grey')
-wall = Entity(name='wall', position=wall_pos, glyph=wall_glyph, renderable=True, blocking=True)
+wall = Entity(name='wall', position=wall_pos, glyph=wall_glyph, renderable=True, movement=Movement()
+              , blocking=True, ai=MoveRandomDirection())
 var.entities.append(wall)
 
 # set the name of the file, the logging level, and that we want to truncate each time
@@ -40,6 +42,7 @@ try:
         terminal.clear()
         var.player_action, var.mouse_x, var.mouse_y = get_input()
         PlayerInputSystem.handle_input(var.player_action)
+        wall.ai.take_turn()
         MovementSystem.move_entities()
         RenderingSystem.render_entities()
         RenderingSystem.render_gui()
