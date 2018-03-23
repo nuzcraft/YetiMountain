@@ -50,16 +50,22 @@ def move_entities():
                                 x, y = interim_pos_array[i]
                                 interim_pos_array[i] = x - 1, y + 1
 
-                        if not BlockingSystem.array_is_blocked(interim_pos_array):
+                        if not BlockingSystem.array_is_blocked(interim_pos_array, ent):
                             # go ahead and log that we moved
                             game_message(ent.name + ' moved ' + ent.position.direction)
                             logging.getLogger().debug(ent.name + ' moved ' + ent.position.direction)
                             # make the move
                             ent.position.position_array = interim_pos_array
+                            # reset movement after moving / may want to change how this works, have default values?
+                            ent.movement.direction = 'none'
+                            ent.movement.speed = 0
+
                         else:
                             # we were blocked, log it and return
                             game_message(ent.name + ' blocked')
                             logging.getLogger().debug(ent.name + ' blocked')
+                            ent.movement.direction = 'none'
+                            ent.movement.speed = 0
                             return
     except Exception:
         logging.getLogger().error('error in move_entities', exc_info=True)

@@ -19,7 +19,7 @@ player_glyph = Glyph(var.glyph_array, 'white')
 player_movement = Movement()
 player_input = PlayerInput()
 player = Entity(name='player', position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
-                , player_input=player_input)
+                , blocking=True, player_input=player_input)
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
 wall_glyph = Glyph(var.wall_glyph, 'grey')
@@ -42,8 +42,11 @@ try:
         terminal.clear()
         var.player_action, var.mouse_x, var.mouse_y = get_input()
         PlayerInputSystem.handle_input(var.player_action)
-        wall.ai.take_turn()
         MovementSystem.move_entities()
+        # let the ai take turns if the player has taken their turn
+        if var.player_action != 'none'and var.player_action != 'page up' and var.player_action != 'page down' and \
+                var.player_action != 'mouse wheel scroll':
+            wall.ai.take_turn()
         RenderingSystem.render_entities()
         RenderingSystem.render_gui()
         terminal.refresh()
