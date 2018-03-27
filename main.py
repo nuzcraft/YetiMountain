@@ -8,6 +8,7 @@ from Components.PlayerInput import PlayerInput
 from Systems import RenderingSystem
 from Systems import PlayerInputSystem
 from Systems import MovementSystem
+from Systems import AISystem
 from Helpers.get_input import get_input
 from bearlibterminal import terminal
 import logging
@@ -34,6 +35,7 @@ logging.basicConfig(filename='ym.log', level=logging.DEBUG,
 try:
     # open the terminal, then refresh it to prepare for inputs
     terminal.open()
+    var.game_state = 'open'
     logging.getLogger().info('terminal opened')
     terminal.refresh()
 
@@ -43,16 +45,14 @@ try:
         var.player_action, var.mouse_x, var.mouse_y = get_input()
         PlayerInputSystem.handle_input(var.player_action)
         MovementSystem.move_entities()
-        # let the ai take turns if the player has taken their turn
-        if var.player_action != 'none'and var.player_action != 'page up' and var.player_action != 'page down' and \
-                var.player_action != 'mouse wheel scroll':
-            wall.ai.take_turn()
+        AISystem.take_turns()
         RenderingSystem.render_entities()
         RenderingSystem.render_gui()
         terminal.refresh()
 
     # close the terminal to quit the game
     terminal.close()
+    var.game_state = 'closed'
     logging.getLogger().info('terminal closed')
 except Exception as e:
     logging.getLogger().error('error in main game loop', exc_info=True)

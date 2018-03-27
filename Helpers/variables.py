@@ -12,7 +12,7 @@ wall_glyph = ['#']
 entities = []
 
 player_action = 'idle'
-game_state = 'playing'
+game_state = 'closed'
 
 # message stuff
 message_log = []
