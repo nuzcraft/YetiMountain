@@ -49,6 +49,10 @@ def apply_inputs():
                     else:
                         ent.player_input.action = 'none'
                         ent.movement.speed = 0
+                # if the player did something, increase the turn number
+                if ent.player_input.action != 'none':
+                    var.turn_number += 1
+
     except Exception:
         logging.getLogger().error('error in apply_inputs', exc_info=True)
 

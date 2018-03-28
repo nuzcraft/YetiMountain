@@ -20,12 +20,12 @@ player_glyph = Glyph(var.glyph_array, 'white')
 player_movement = Movement()
 player_input = PlayerInput()
 player = Entity(name='player', position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
-                , blocking=True, player_input=player_input)
+                , blocking=True, player_input=player_input, base_speed=100)
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
 wall_glyph = Glyph(var.wall_glyph, 'grey')
 wall = Entity(name='wall', position=wall_pos, glyph=wall_glyph, renderable=True, movement=Movement()
-              , blocking=True, ai=MoveRandomDirection())
+              , blocking=True, ai=MoveRandomDirection(), base_speed=100)
 var.entities.append(wall)
 
 # set the name of the file, the logging level, and that we want to truncate each time

@@ -52,7 +52,7 @@ def move_entities():
 
                         if not BlockingSystem.array_is_blocked(interim_pos_array, ent):
                             # go ahead and log that we moved
-                            game_message(ent.name + ' moved ' + ent.position.direction)
+                            game_message(str(var.turn_number) + ' ' + ent.name + ' moved ' + ent.position.direction)
                             logging.getLogger().debug(ent.name + ' moved ' + ent.position.direction)
                             # make the move
                             ent.position.position_array = interim_pos_array
@@ -62,7 +62,7 @@ def move_entities():
 
                         else:
                             # we were blocked, log it and return
-                            game_message(ent.name + ' blocked')
+                            game_message(str(var.turn_number) + ' ' + ent.name + ' blocked')
                             logging.getLogger().debug(ent.name + ' blocked')
                             ent.movement.direction = 'none'
                             ent.movement.speed = 0
