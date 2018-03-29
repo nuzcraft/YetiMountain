@@ -12,7 +12,7 @@ def handle_input(input_string):
     try:
         if input_string == 'page up' or input_string == 'page down' or input_string == 'mouse wheel scroll':
             apply_ui_inputs(input_string)
-        for ent in var.entities:
+        for ent in var.action_entities:  # 3/28 switched from var.entities to var.action_entities
             if ent.player_input and ent.player_input.action != input_string:
                 ent.player_input.action = input_string
         apply_inputs()
@@ -23,7 +23,7 @@ def handle_input(input_string):
 def apply_inputs():
     # uses the player_input component and applies it to movement
     try:
-        for ent in var.entities:
+        for ent in var.action_entities:
             if ent.player_input and ent.movement:
                 if ent.player_input.action == 'none':
                     ent.movement.direction = ent.player_input.action
