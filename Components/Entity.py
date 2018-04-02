@@ -16,4 +16,4 @@ class Entity:
         self.ai = ai
         if self.ai:
             self.ai.owner = self
-        self.speed = base_speed
+        self.base_speed = base_speed

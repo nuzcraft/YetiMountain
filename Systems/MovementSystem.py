@@ -10,9 +10,9 @@ from Helpers.game_message import game_message
 def move_entities():
     # loop through entities, looking for ones that need to move
     try:
-        for ent in var.action_entities:
+        for ent in var.entities:
             if ent.movement:
-                if ent.movement.direction != 'none':
+                if ent.movement.direction != 'None':
                     ent.position.direction = ent.movement.direction
                     if ent.movement.speed != 0:
                         interim_pos_array = list(ent.position.position_array)

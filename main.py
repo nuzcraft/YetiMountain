@@ -10,7 +10,6 @@ from Systems import PlayerInputSystem
 from Systems import MovementSystem
 from Systems import AISystem
 from Helpers.get_input import get_input
-import Helpers.action_stack as action_stack
 from bearlibterminal import terminal
 import logging
 from Components.AIs.MoveRandomDirection import MoveRandomDirection
@@ -21,7 +20,7 @@ player_glyph = Glyph(var.glyph_array, 'white')
 player_movement = Movement()
 player_input = PlayerInput()
 player = Entity(name='player', position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
-                , blocking=True, player_input=player_input, base_speed=1000)
+                , blocking=True, player_input=player_input, base_speed=100)
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
 wall_glyph = Glyph(var.wall_glyph, 'grey')
@@ -40,27 +39,13 @@ try:
     logging.getLogger().info('terminal opened')
     terminal.refresh()
 
-    # create the initial action stack
-    action_stack.create_initial_stack()
-    action_stack.get_action_entities()
-
     # main game loop, continue until we choose to exit
     while var.player_action != 'exit':
         terminal.clear()
-        for ent in var.action_entities:
-            if ent.player_input:
-                var.player_action, var.mouse_x, var.mouse_y = get_input()
-                break
+        var.player_action, var.mouse_x, var.mouse_y = get_input()
         PlayerInputSystem.handle_input(var.player_action)
         MovementSystem.move_entities()
         AISystem.take_turns()
-        # get the next entities in the list from the action stack
-        should_get_action_entities = True
-        for ent in var.action_entities:
-            if ent.player_input and var.player_action == 'none':
-                should_get_action_entities = False
-        if should_get_action_entities:
-            action_stack.get_action_entities()
         RenderingSystem.render_entities()
         RenderingSystem.render_gui()
         terminal.refresh()

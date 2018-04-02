@@ -10,8 +10,6 @@ wall_array = [(15, 15)]
 wall_glyph = ['#']
 
 entities = []
-action_stack = []
-action_entities = []
 
 player_action = 'idle'
 game_state = 'closed'
