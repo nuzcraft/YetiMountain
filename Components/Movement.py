@@ -2,6 +2,5 @@
 
 
 class Movement:
-    def __init__(self, direction='none', speed=0):
+    def __init__(self, direction='none'):
         self.direction = direction
-        self.speed = speed

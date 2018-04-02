@@ -27,9 +27,9 @@ def apply_inputs():
             if ent.player_input and ent.movement:
                 if ent.player_input.action == 'none':
                     ent.movement.direction = ent.player_input.action
-                    ent.movement.speed = 0
+                    ent.speed = 0
                 else:
-                    ent.movement.speed = 100
+                    ent.speed = 100
                     if ent.player_input.action == 'right':
                         ent.movement.direction = 'east'
                     elif ent.player_input.action == 'left':
@@ -48,7 +48,7 @@ def apply_inputs():
                         ent.movement.direction = 'southwest'
                     else:
                         ent.player_input.action = 'none'
-                        ent.movement.speed = 0
+                        ent.speed = 0
                 # if the player did something, increase the turn number
                 if ent.player_input.action != 'none':
                     var.turn_number += 1

@@ -14,7 +14,7 @@ def move_entities():
             if ent.movement:
                 if ent.movement.direction != 'None':
                     ent.position.direction = ent.movement.direction
-                    if ent.movement.speed != 0:
+                    if ent.speed != 0:
                         interim_pos_array = list(ent.position.position_array)
                         if ent.movement.direction == 'east':
                             # TODO: create a function to move entities a specific number of tiles
@@ -58,14 +58,14 @@ def move_entities():
                             ent.position.position_array = interim_pos_array
                             # reset movement after moving / may want to change how this works, have default values?
                             ent.movement.direction = 'none'
-                            ent.movement.speed = 0
+                            ent.speed = 0
 
                         else:
                             # we were blocked, log it and return
                             game_message(str(var.turn_number) + ' ' + ent.name + ' blocked')
                             logging.getLogger().debug(ent.name + ' blocked')
                             ent.movement.direction = 'none'
-                            ent.movement.speed = 0
+                            ent.speed = 0
                             return
     except Exception:
         logging.getLogger().error('error in move_entities', exc_info=True)

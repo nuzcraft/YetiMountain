@@ -9,4 +9,4 @@ class MoveRandomDirection:
         ent = self.owner
         directions = ['north', 'south', 'east', 'west']
         ent.movement.direction = random.choice(directions)
-        ent.movement.speed = 100
+        ent.speed = 100
