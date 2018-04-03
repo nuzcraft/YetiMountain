@@ -10,6 +10,7 @@ from Systems import PlayerInputSystem
 from Systems import MovementSystem
 from Systems import AISystem
 from Helpers.get_input import get_input
+from Helpers.get_active_entities import get_active_entities
 from bearlibterminal import terminal
 import logging
 from Components.AIs.MoveRandomDirection import MoveRandomDirection
@@ -20,7 +21,7 @@ player_glyph = Glyph(var.glyph_array, 'white')
 player_movement = Movement()
 player_input = PlayerInput()
 player = Entity(name='player', position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
-                , blocking=True, player_input=player_input, base_speed=100)
+                , blocking=True, player_input=player_input, base_speed=200)
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
 wall_glyph = Glyph(var.wall_glyph, 'grey')
@@ -44,6 +45,7 @@ try:
         terminal.clear()
         var.player_action, var.mouse_x, var.mouse_y = get_input()
         PlayerInputSystem.handle_input(var.player_action)
+        get_active_entities() # maybe the solution is to not put player controlled characters in the action list since they function differently than other entities
         MovementSystem.move_entities()
         AISystem.take_turns()
         RenderingSystem.render_entities()

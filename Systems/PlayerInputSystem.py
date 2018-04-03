@@ -28,8 +28,10 @@ def apply_inputs():
                 if ent.player_input.action == 'none':
                     ent.movement.direction = ent.player_input.action
                     ent.speed = 0
+                    ent.turn_timer = 0
                 else:
                     ent.speed = 100
+                    ent.turn_timer = 100
                     if ent.player_input.action == 'right':
                         ent.movement.direction = 'east'
                     elif ent.player_input.action == 'left':
@@ -49,8 +51,10 @@ def apply_inputs():
                     else:
                         ent.player_input.action = 'none'
                         ent.speed = 0
-                # if the player did something, increase the turn number
+                        ent.turn_timer = 0
+                # if the player did something, add them to the entity action list, and increase the turn number
                 if ent.player_input.action != 'none':
+                    var.entity_action_list.append(ent)
                     var.turn_number += 1
 
     except Exception:

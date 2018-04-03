@@ -11,5 +11,7 @@ def take_turns():
             for ent in var.entities:
                 if ent.ai:
                     ent.ai.take_turn()
+                    # add the entity to the action list
+                    var.entity_action_list.append(ent)
     except Exception:
         logging.GetLogger().error('error in take_turn', exc_info=True)

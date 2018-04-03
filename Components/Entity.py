@@ -4,7 +4,7 @@
 class Entity:
     # class file for an Entity
     def __init__(self, name, position=None, glyph=None, renderable=False, movement=None, player_input=None
-                 , blocking=False, ai=None, base_speed=0):
+                 , blocking=False, ai=None, turn_timer=0, base_speed=0):
         # initialization for self and components
         self.name = name
         self.position = position
@@ -17,3 +17,4 @@ class Entity:
         if self.ai:
             self.ai.owner = self
         self.speed = base_speed
+        self.turn_timer = turn_timer
