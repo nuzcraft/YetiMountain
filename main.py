@@ -21,13 +21,14 @@ player_glyph = Glyph(var.glyph_array, 'white')
 player_movement = Movement()
 player_input = PlayerInput()
 player = Entity(name='player', position=player_pos, glyph=player_glyph, renderable=True, movement=player_movement
-                , blocking=True, player_input=player_input, base_speed=200)
+                , blocking=True, player_input=player_input, base_speed=100)
 var.entities.append(player)
 wall_pos = Position(var.wall_array)
 wall_glyph = Glyph(var.wall_glyph, 'grey')
 wall = Entity(name='wall', position=wall_pos, glyph=wall_glyph, renderable=True, movement=Movement()
               , blocking=True, ai=MoveRandomDirection(), base_speed=100)
 var.entities.append(wall)
+var.active_entities.append(player)
 
 # set the name of the file, the logging level, and that we want to truncate each time
 logging.basicConfig(filename='ym.log', level=logging.DEBUG,
@@ -39,15 +40,19 @@ try:
     var.game_state = 'open'
     logging.getLogger().info('terminal opened')
     terminal.refresh()
+    var.game_state = 'playing'
+    logging.getLogger().info('game_state=playing')
 
     # main game loop, continue until we choose to exit
     while var.player_action != 'exit':
         terminal.clear()
         var.player_action, var.mouse_x, var.mouse_y = get_input()
         PlayerInputSystem.handle_input(var.player_action)
-        get_active_entities() # maybe the solution is to not put player controlled characters in the action list since they function differently than other entities
-        MovementSystem.move_entities()
-        AISystem.take_turns()
+        if not var.game_state == 'waiting':
+            MovementSystem.move_entities()
+            AISystem.take_turns()
+            # get entities from the action_list and add them to the active_entities list
+            get_active_entities()
         RenderingSystem.render_entities()
         RenderingSystem.render_gui()
         terminal.refresh()

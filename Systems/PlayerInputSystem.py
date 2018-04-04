@@ -12,9 +12,14 @@ def handle_input(input_string):
     try:
         if input_string == 'page up' or input_string == 'page down' or input_string == 'mouse wheel scroll':
             apply_ui_inputs(input_string)
-        for ent in var.entities:
-            if ent.player_input and ent.player_input.action != input_string:
-                ent.player_input.action = input_string
+        for ent in var.active_entities:
+            if ent.player_input:
+                # if there's a player controlled character in the list, change game_state to waiting
+                # TODO: this assumes every player controlled character in the action_entities list will take the same
+                # command
+                var.game_state = 'waiting'
+                if ent.player_input.action != input_string:
+                    ent.player_input.action = input_string
         apply_inputs()
     except Exception:
         logging.getLogger().error('error in handle_input', exc_info=True)
@@ -23,7 +28,7 @@ def handle_input(input_string):
 def apply_inputs():
     # uses the player_input component and applies it to movement
     try:
-        for ent in var.entities:
+        for ent in var.active_entities:  # entities:
             if ent.player_input and ent.movement:
                 if ent.player_input.action == 'none':
                     ent.movement.direction = ent.player_input.action
@@ -56,6 +61,8 @@ def apply_inputs():
                 if ent.player_input.action != 'none':
                     var.entity_action_list.append(ent)
                     var.turn_number += 1
+                    var.game_state = 'playing'
+                    logging.getLogger().debug('game_state=playing')
 
     except Exception:
         logging.getLogger().error('error in apply_inputs', exc_info=True)
