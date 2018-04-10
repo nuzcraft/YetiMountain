@@ -15,7 +15,7 @@ def render_entities():
                 for i in range(len(ent.position.position_array)):
                     x, y = ent.position.position_array[i]
                     g = ent.glyph.glyph_array[i]
-                    terminal.printf(x*2, y, '[font=map]'+g+'[/font]', terminal.color(terminal.color_from_name(ent.glyph.color)))
+                    terminal.printf(x, y, '[font=map]'+g+'[/font]', terminal.color(terminal.color_from_name(ent.glyph.color)))
     except Exception:
         logging.GetLogger().error('error in render_entities', exc_info=True)
 

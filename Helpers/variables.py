@@ -1,6 +1,6 @@
 # window variables (3/27/2018 cut window in half to use bigger tiles)
 window_length = 80
-window_height = 30
+window_height = 60
 
 # global variables to be used
 player_array = [(10, 10), (10, 11)]
@@ -46,7 +46,7 @@ c_dblpipe_up_left_corner = '[0x255D]'
 
 # message log gui
 message_log_width = 30
-message_log_height = 15
+message_log_height = 30
 message_log_x = window_length - message_log_width
 message_log_y = window_height - message_log_height
 
